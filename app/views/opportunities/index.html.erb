@@ -18,7 +18,7 @@
         <td><%= opportunity.amount %></td>
         <td><%= opportunity.stage %></td>
         <td><%= opportunity.account.name %></td>
-        <td><%= link_to 'Show', [@account] %></td>
+        <td><%= link_to 'Show', @account %></td>
         <td><%= link_to 'Edit', edit_account_opportunity_path(@account, opportunity) %></td>
         <td><%= link_to 'Destroy', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

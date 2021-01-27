@@ -13,17 +13,16 @@
 
   <div class="field">
     <%= form.label :amount %>
-    <%= form.number_field :amount, step: 0.05 %>
+    <%= form.number_field :amount, step: 0.05, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :stage %>
     <%= form.select :stage, Opportunity.stages.keys, id: :Opportunity_stage,
-    prompt: 'Select a stage'
-    %>
+    prompt: '--Select a stage--', class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+     <%= submit_tag "Submit", class: "btn btn-primary mt-2" %>
   </div>
 <% end %>

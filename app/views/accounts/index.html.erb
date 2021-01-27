@@ -1,32 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Accounts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @accounts.each do |account| %>
-      <tr>
-        <td><%= account.name %></td>
-        <td><%= account.address %></td>
-        <td><%= link_to 'Show', account %></td>
-        <% if session[:user_id] %>
-          <td><%= link_to 'Edit', edit_account_path(account) %></td>
-          <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 <% if session[:user_id] %>
   <%= link_to 'New Account', new_account_path %>
 <% end %>
+<div>
+  <div class="row">
+    <% @accounts.each do |account| %>
+      <div class="col-md-4">
+        <div class="card mt-3">
+          <div class="card-header">
+            <%= account.name %>
+          </div>
+          <div class="card-body">
+              <h5 class="card-title">Address: <%= account.address %></h5>
+              <p class="card-text">Opportunities: <%= account.opportunities.count %> </p>
+              <%= link_to 'Show', account %>
+              <% if session[:user_id] %>
+                <td><%= link_to 'Edit', edit_account_path(account) %></td>
+                <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

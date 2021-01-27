@@ -6,14 +6,14 @@
     <h2>Log In</h2>
     <div class="field">
     <%= label_tag :name, 'Name:' %>
-    <%= text_field_tag :name, params[:name] %>
+    <%= text_field_tag :name, params[:name], class: "form-control" %>
     </div>
     <div class="field">
     <%= label_tag :password, 'Password:' %>
-    <%= password_field_tag :password, params[:password] %>
+    <%= password_field_tag :password, params[:password], class: "form-control" %>
     </div>
     <div class="actions">
-    <%= submit_tag "Login" %>
+    <%= submit_tag "Login", class: "btn btn-primary mt-2" %>
     </div>
   <% end %>
 </section>

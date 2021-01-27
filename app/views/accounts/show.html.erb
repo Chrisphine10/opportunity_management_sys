@@ -19,14 +19,21 @@
 <% if session[:user_id] %>
   <%= link_to 'New Opportunity', new_account_opportunity_path(@account) %>
 <% end %>
-<% for opportunity in @account.opportunities %>
-    <ul>
-      <li><%= opportunity.amount %></li>
-      <li><%= opportunity.stage %></li>
-      <li><%= opportunity.account.name %></li>
-      <% if session[:user_id] %>
-      <li><%= link_to 'Edit', edit_account_opportunity_path(@account, opportunity) %></li>
-      <li><%= link_to 'Destroy', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' } %></li>
-      <% end %>
-  </ul>
-<% end %>
+
+<div class="row">
+  <% for opportunity in @account.opportunities %>
+    <div class="col-sm-4">
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= opportunity.amount %></h5>
+          <p class="card-text"><%= opportunity.stage %></p>
+          <%= link_to 'Show', account_opportunity_path(@account, opportunity) %>
+            <% if session[:user_id] %>
+            <%= link_to 'Edit', edit_account_opportunity_path(@account, opportunity) %>
+            <%= link_to 'Destroy', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
