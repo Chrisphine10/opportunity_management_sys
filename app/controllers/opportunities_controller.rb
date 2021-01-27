@@ -1,10 +1,11 @@
 class OpportunitiesController < ApplicationController
   skip_before_action :authorize, only: %i[ show index ]
+  before_action :get_account
   before_action :set_opportunity, only: %i[ show edit update destroy ]
-
+  #before_action :set_stage, only: %i[ show index ]
   # GET /opportunities or /opportunities.json
   def index
-    @opportunities = Opportunity.all
+    @opportunities = @account.opportunities
   end
 
   # GET /opportunities/1 or /opportunities/1.json
@@ -13,7 +14,7 @@ class OpportunitiesController < ApplicationController
 
   # GET /opportunities/new
   def new
-    @opportunity = Opportunity.new
+    @opportunity = @account.opportunities.build
   end
 
   # GET /opportunities/1/edit
@@ -22,11 +23,11 @@ class OpportunitiesController < ApplicationController
 
   # POST /opportunities or /opportunities.json
   def create
-    @opportunity = Opportunity.new(opportunity_params)
+    @opportunity = @account.opportunities.build(opportunity_params)
 
     respond_to do |format|
       if @opportunity.save
-        format.html { redirect_to @opportunity, notice: "Opportunity was successfully created." }
+        format.html { redirect_to account_path(@account), notice: "Opportunity was successfully created." }
         format.json { render :show, status: :created, location: @opportunity }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +40,7 @@ class OpportunitiesController < ApplicationController
   def update
     respond_to do |format|
       if @opportunity.update(opportunity_params)
-        format.html { redirect_to @opportunity, notice: "Opportunity was successfully updated." }
+        format.html { redirect_to account_path(@account), notice: "Opportunity was successfully updated." }
         format.json { render :show, status: :ok, location: @opportunity }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,15 +53,18 @@ class OpportunitiesController < ApplicationController
   def destroy
     @opportunity.destroy
     respond_to do |format|
-      format.html { redirect_to opportunities_url, notice: "Opportunity was successfully destroyed." }
+      format.html { redirect_to account_opportunities_path(@account), notice: "Opportunity was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+    def get_account
+      @account = Account.find(params[:account_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_opportunity
-      @opportunity = Opportunity.find(params[:id])
+      @opportunity = @account.opportunities.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

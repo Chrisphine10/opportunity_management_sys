@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   end
   #get 'home/index'
   root 'home#index', as: 'home_index'
-  resources :accounts 
-  resources :opportunities
+  resources :accounts do
+    resources :opportunities
+  end
   
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

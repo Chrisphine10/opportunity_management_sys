@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_01_26_221625) do
 
   create_table "opportunities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.decimal "amount", precision: 8, scale: 2
-    t.string "stage"
+    t.integer "stage"
     t.bigint "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

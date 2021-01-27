@@ -17,13 +17,16 @@
         <td><%= account.name %></td>
         <td><%= account.address %></td>
         <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:user_id] %>
+          <td><%= link_to 'Edit', edit_account_path(account) %></td>
+          <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Account', new_account_path %>
+<% if session[:user_id] %>
+  <%= link_to 'New Account', new_account_path %>
+<% end %>

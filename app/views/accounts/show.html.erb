@@ -10,5 +10,23 @@
   <%= @account.address %>
 </p>
 
+<% if session[:user_id] %>
 <%= link_to 'Edit', edit_account_path(@account) %> |
+<% end %>
 <%= link_to 'Back', accounts_path %>
+
+<h2>Opportunities</h2>
+<% if session[:user_id] %>
+  <%= link_to 'New Opportunity', new_account_opportunity_path(@account) %>
+<% end %>
+<% for opportunity in @account.opportunities %>
+    <ul>
+      <li><%= opportunity.amount %></li>
+      <li><%= opportunity.stage %></li>
+      <li><%= opportunity.account.name %></li>
+      <% if session[:user_id] %>
+      <li><%= link_to 'Edit', edit_account_opportunity_path(@account, opportunity) %></li>
+      <li><%= link_to 'Destroy', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <% end %>
+  </ul>
+<% end %>
