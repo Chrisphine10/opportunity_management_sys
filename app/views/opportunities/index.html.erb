@@ -15,6 +15,7 @@
   <tbody>
     <% @opportunities.each do |opportunity| %>
       <tr>
+        <td><%= opportunity.name %></td>
         <td><%= opportunity.amount %></td>
         <td><%= opportunity.stage %></td>
         <td><%= opportunity.account.name %></td>

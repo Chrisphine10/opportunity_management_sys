@@ -1,26 +1,34 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Accounts</h1>
 <% if session[:user_id] %>
-  <%= link_to 'New Account', new_account_path %>
+  <%= link_to 'New Account', new_account_path, class: "btn btn-primary float-right" %>
 <% end %>
+<h1>Accounts</h1>
 <div>
   <div class="row">
     <% @accounts.each do |account| %>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-12">
         <div class="card mt-3">
           <div class="card-header">
             <%= account.name %>
           </div>
-          <div class="card-body">
-              <h5 class="card-title">Address: <%= account.address %></h5>
-              <p class="card-text">Opportunities: <%= account.opportunities.count %> </p>
-              <%= link_to 'Show', account %>
-              <% if session[:user_id] %>
-                <td><%= link_to 'Edit', edit_account_path(account) %></td>
-                <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% end %>
-          </div>
+            <%= link_to account, class: "text-decoration-none", style: "color: black;" do %>
+              <div class="card-body linkable">
+                  <h5 class="card-title">Address: <%= account.address %></h5>
+                  <p class="card-text">Opportunities: <%= account.opportunities.count %> </p>
+              </div>
+            <% end %>
+          <% if session[:user_id] %>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col">
+                  <%= link_to 'Edit', edit_account_path(account), class: "btn btn-secondary form-control btn-block" %> 
+                </div>
+                <div class="col">
+                  <%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger form-control btn-block" %> 
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>

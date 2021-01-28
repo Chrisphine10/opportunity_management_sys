@@ -1,6 +1,6 @@
 class Opportunity < ApplicationRecord
   belongs_to :account
-  validates :amount, :stage, presence: true
+  validates :name, :amount, :stage, presence: true
 
   enum stage: {
     "Discovery" => 0,

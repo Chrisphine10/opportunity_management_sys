@@ -40,7 +40,7 @@ class OpportunitiesController < ApplicationController
   def update
     respond_to do |format|
       if @opportunity.update(opportunity_params)
-        format.html { redirect_to account_path(@account), notice: "Opportunity was successfully updated." }
+        format.html { redirect_to account_opportunity_path(@account), notice: "Opportunity was successfully updated." }
         format.json { render :show, status: :ok, location: @opportunity }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class OpportunitiesController < ApplicationController
   def destroy
     @opportunity.destroy
     respond_to do |format|
-      format.html { redirect_to account_opportunities_path(@account), notice: "Opportunity was successfully destroyed." }
+      format.html { redirect_to account_path(@account), notice: "Opportunity was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class OpportunitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def opportunity_params
-      params.require(:opportunity).permit(:amount, :stage, :account_id)
+      params.require(:opportunity).permit(:name, :amount, :stage, :account_id)
     end
 end

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_01_26_221625) do
   end
 
   create_table "opportunities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
     t.decimal "amount", precision: 8, scale: 2
     t.integer "stage"
     t.bigint "account_id", null: false

@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Name:</strong>
+  <%= @opportunity.name %>
+</p>
+
+<p>
   <strong>Amount:</strong>
   <%= @opportunity.amount %>
 </p>
@@ -14,6 +19,3 @@
   <strong>Account:</strong>
   <%= @opportunity.account_id %>
 </p>
-
-<%= link_to 'Edit', edit_account_opportunity_path(@opportunity) %> |
-<%= link_to 'Back', account_path(@account) %>

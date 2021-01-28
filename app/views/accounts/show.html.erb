@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<% if session[:user_id] %>
+<%= link_to 'Edit', edit_account_path(@account), class: "btn btn-secondary float-right" %> 
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @account.name %>
@@ -10,11 +12,6 @@
   <%= @account.address %>
 </p>
 
-<% if session[:user_id] %>
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<% end %>
-<%= link_to 'Back', accounts_path %>
-
 <h2>Opportunities</h2>
 <% if session[:user_id] %>
   <%= link_to 'New Opportunity', new_account_opportunity_path(@account) %>
@@ -24,15 +21,20 @@
   <% for opportunity in @account.opportunities %>
     <div class="col-sm-4">
       <div class="card mt-3">
-        <div class="card-body">
-          <h5 class="card-title"><%= opportunity.amount %></h5>
-          <p class="card-text"><%= opportunity.stage %></p>
-          <%= link_to 'Show', account_opportunity_path(@account, opportunity) %>
-            <% if session[:user_id] %>
-            <%= link_to 'Edit', edit_account_opportunity_path(@account, opportunity) %>
-            <%= link_to 'Destroy', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-        </div>
+          <div class="card-header">
+            <%= opportunity.name %>
+          </div>
+          
+          <div class="card-body">
+            <h5 class="card-title"><%= opportunity.amount %></h5>
+            <p class="card-text"><%= opportunity.stage %></p>
+          </div>
+          <% if session[:user_id] %>
+            <div class="card-footer text-center">
+              <%= link_to 'Edit', edit_account_opportunity_path(@account, opportunity), class: "btn btn-warning float-left" %>
+              <%= link_to 'Destroy', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right" %>
+            </div>
+          <% end %>
       </div>
     </div>
   <% end %>
