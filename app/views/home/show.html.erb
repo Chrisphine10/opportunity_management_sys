@@ -2,6 +2,7 @@
 <% if session[:user_id] %>
   <%= link_to 'Create Account', new_account_path, class: "btn btn-primary float-right" %>
 <% end %>
+ 
 <h1>Company Accounts</h1>
 <div>
   <div class="row">
@@ -16,7 +17,7 @@
                   <h5 class="card-title">Address: <%= account.address %></h5>
                   <p class="card-text">Available Opportunities: <%= account.opportunities.count %> </p>
               </div>
-            <% if session[:user_id] && account.user_id == session[:user_id] || admin? %>
+            <% if session[:user_id] && admin? %>
               <div class="card-footer p-2">
                 <div class="row">
                   <div class="col">
@@ -30,6 +31,25 @@
             <% end %>
           </div>
         <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<h1>Available Opportunities</h1>
+<div>
+  <div class="row">
+    <% @opportunities.each do |opportunity| %>
+      <div class="col-lg-4 col-sm-12">
+          <div class="card linkable mt-3">
+            <div class="card-header">
+              <%= opportunity.name %> from <%= Account.find_by(id: opportunity.account_id).name %>
+            </div>
+              <div class="card-body">
+                  <h5 class="card-title">Stage: <%= opportunity.stage %></h5>
+                  <p class="card-text">Amount: <%= opportunity.amount %> </p>
+              </div>
+          </div>
       </div>
     <% end %>
   </div>

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Available Opportunities</h1>
+
+<div>
+  <div class="row">
+    <% @opportunities.each do |opportunity| %>
+      <div class="col-lg-4 col-sm-12">
+          <div class="card linkable mt-3">
+            <div class="card-header">
+              <%= opportunity.name %> from <%= Account.find_by(id: opportunity.account_id).name %>
+            </div>
+              <div class="card-body">
+                  <h5 class="card-title">Stage: <%= opportunity.stage %></h5>
+                  <p class="card-text">Amount: <%= opportunity.amount %> </p>
+              </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.where(user_id: session[:user_id])
+    @list_accounts = Account.all
   end
 
   # GET /accounts/1 or /accounts/1.json
@@ -26,7 +27,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to account_path(@account), notice: "Account was successfully created." }
+        format.html { redirect_to accounts_path, notice: "Account was successfully created." }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +40,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to account_path(@account), notice: "Account was successfully updated." }
+        format.html { redirect_to accounts_path, notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: "Account was successfully destroyed." }
+      format.html { redirect_to accounts_path, notice: "Account was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -63,7 +64,7 @@ class AccountsController < ApplicationController
       @account = Account.find(params[:id])
     end
     def check_current_account
-      if session[:user_id] != @account.user_id 
+      if session[:user_id] != @account.user_id && User.find_by(id: session[:user_id]).role != "Admin"
         redirect_to accounts_path, notice: "You are unauthorized to perform this action!"
       end
     end

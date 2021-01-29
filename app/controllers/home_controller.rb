@@ -4,5 +4,6 @@ class HomeController < ApplicationController
   end
   def show
     @accounts = Account.all
+    @opportunities = Opportunity.all
   end
 end

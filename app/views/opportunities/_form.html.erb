@@ -28,11 +28,11 @@
       prompt: '--Select a stage--', 
       class: "form-control" %>
   </div>
-<% if @account.user_id == session[:user_id] %>
+<% if @account.user_id == session[:user_id] || admin? %>
   <div class="actions">
      <div class="row">
       <div class="col">
-        <%= link_to 'Cancel', @account, class: "btn btn-primary form-control btn-block" %> 
+        <%= link_to 'Cancel', :back, class: "btn btn-primary form-control btn-block" %> 
       </div>
       <div class="col">
         <%= submit_tag "Submit", class: "btn btn-primary form-control btn-block" %>

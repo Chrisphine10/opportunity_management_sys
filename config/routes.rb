@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   get 'admin' => 'admin#index'
   get 'home' => 'home#show'
+  get 'opportunities' => 'opportunities#all'
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
   resources :accounts do
     resources :opportunities
   end
-  
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
