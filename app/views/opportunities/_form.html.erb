@@ -11,24 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group field">
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group field">
     <%= form.label :amount %>
     <%= form.number_field :amount, step: 0.05, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group field">
     <%= form.label :stage %>
       <%= form.select :stage, Opportunity.stages.keys,
       id: :Opportunity_stage,
-      prompt: '--Select a stage--',
+      prompt: '--Select a stage--', 
       class: "form-control" %>
   </div>
-
+<% if @account.user_id == session[:user_id] %>
   <div class="actions">
      <div class="row">
       <div class="col">
@@ -44,4 +44,5 @@
       <% end %>
     </div>
   </div>
+<% end %>
 <% end %>

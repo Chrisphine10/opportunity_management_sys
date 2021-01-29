@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   
   get 'admin' => 'admin#index'
+  get 'home' => 'home#show'
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
   end
-  #get 'home/index'
   root 'home#index', as: 'home_index'
   resources :accounts do
     resources :opportunities

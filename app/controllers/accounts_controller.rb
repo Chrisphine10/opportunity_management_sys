@@ -1,10 +1,10 @@
 class AccountsController < ApplicationController
   skip_before_action :authorize, only: %i[ show index ]
   before_action :set_account, only: %i[ show edit update destroy ]
-
+  before_action :check_current_account, only: %i[ edit update destroy]
   # GET /accounts or /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = Account.where(user_id: session[:user_id])
   end
 
   # GET /accounts/1 or /accounts/1.json
@@ -62,7 +62,11 @@ class AccountsController < ApplicationController
     def set_account
       @account = Account.find(params[:id])
     end
-
+    def check_current_account
+      if session[:user_id] != @account.user_id 
+        redirect_to accounts_path, notice: "You are unauthorized to perform this action!"
+      end
+    end
     # Only allow a list of trusted parameters through.
     def account_params
       params.require(:account).permit(:name, :address, :user_id)

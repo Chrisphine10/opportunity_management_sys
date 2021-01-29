@@ -2,8 +2,10 @@ class OpportunitiesController < ApplicationController
   skip_before_action :authorize, only: %i[ show index ]
   before_action :get_account
   before_action :set_opportunity, only: %i[ show edit update destroy ]
+  before_action :check_current_account, only: %i[ edit update destroy]
   #before_action :set_stage, only: %i[ show index ]
   # GET /opportunities or /opportunities.json
+  add_breadcrumb "opportunities", :account_path, except: %i[ new ]
   def index
     @opportunities = @account.opportunities
   end
@@ -66,7 +68,11 @@ class OpportunitiesController < ApplicationController
     def set_opportunity
       @opportunity = @account.opportunities.find(params[:id])
     end
-
+    def check_current_account
+      if session[:user_id] != @account.user_id 
+        redirect_to account_path(@account), notice: "You are unauthorized to perform this action!"
+      end
+    end
     # Only allow a list of trusted parameters through.
     def opportunity_params
       params.require(:opportunity).permit(:name, :amount, :stage, :account_id)

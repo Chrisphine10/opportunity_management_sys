@@ -8,7 +8,6 @@
 </h4>
 <h1>Accounts</h1>
 <div>
-<% if @accounts %>
   <div class="row">
     <% @accounts.each do |account| %>
       <div class="col-lg-4 col-sm-12">
@@ -21,23 +20,10 @@
                   <h5 class="card-title">Address: <%= account.address %></h5>
                   <p class="card-text">Available Opportunities: <%= account.opportunities.count %> </p>
               </div>
-            <% if session[:user_id] %>
-              <div class="card-footer p-2">
-                <div class="row">
-                  <div class="col">
-                    <%= link_to 'Edit', edit_account_path(account), class: "btn btn-sm btn-primary form-control btn-block" %> 
-                  </div>
-                  <div class="col">
-                    <%= link_to 'Delete', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-primary form-control btn-block" %> 
-                  </div>
-                </div>
-              </div>
-            <% end %>
           </div>
         <% end %>
       </div>
     <% end %>
   </div>
-  <% end %>
 </div>
 

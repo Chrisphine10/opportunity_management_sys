@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% if session[:user_id] %>
+<% if session[:user_id] && @account.user_id == session[:user_id] %>
   <%= link_to 'Edit ' + @account.name, edit_account_path(@account), class: "btn btn-primary" %> 
   <%= link_to 'Create Opportunity', new_account_opportunity_path(@account), class: "btn btn-small btn-outline-primary" %>
 <% end %>
@@ -30,7 +30,7 @@
                 <h5 class="card-title"><%= opportunity.stage %></h5>
                 <p class="card-text">Ksh <%= opportunity.amount %></p>
               </div>
-              <% if session[:user_id] %>
+              <% if session[:user_id] && @account.user_id == session[:user_id]  %>
                 <div class="card-footer p-2">
                   <div class="row">
                     <div class="col">

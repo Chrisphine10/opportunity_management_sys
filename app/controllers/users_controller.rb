@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :only_admin, only: %i[ new create edit update destroy]
   before_action :set_user, only: %i[ show edit update destroy ]
-  
+  before_action :get_accounts, only: %i[ show]
   # GET /users or /users.json
   def index
     @users = User.all
@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    @accounts = Account.all
   end
 
   # GET /users/new
@@ -71,7 +70,9 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
+    def get_accounts
+      @accounts = Account.where(user_id: params[:id])
+    end 
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation, :role)
