@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'admin' => 'admin#index'
   get 'home' => 'home#show'
   get 'opportunities' => 'opportunities#all'
+  #get 'opportunities/:id' => 'opportunities#show', as: 'opportunity'
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

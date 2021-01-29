@@ -6,14 +6,15 @@
 
 <div class="row">
   <% @users.each do |user| %>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 mb-4">
       <%= link_to user, class: "text-decoration-none", style: "color: black;" do %>
         <div class="card">
           <div class="card-header">
             <%= user.name %>
           </div>
           <div class="card-body">
-            Role: <%= user.role %>
+             <strong> Role: </strong> <%= user.role %><br>
+              <strong> User Accounts: </strong><%= user.accounts.count %>
           </div>
           <div class="card-footer p-2">
             <div class="row">

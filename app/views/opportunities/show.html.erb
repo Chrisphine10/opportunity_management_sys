@@ -1,21 +1,18 @@
 <p id="notice"><%= notice %></p>
+<div class="text-center">
+  <h3>Opportunity Details</h3>
+  <h5>
+    <strong>Name:</strong>
+    <%= @opportunity.name %>
+  </h5>
 
-<p>
-  <strong>Name:</strong>
-  <%= @opportunity.name %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @opportunity.amount %>
-</p>
-
-<p>
-  <strong>Stage:</strong>
-  <%= @opportunity.stage %>
-</p>
-
-<p>
-  <strong>Account:</strong>
-  <%= @opportunity.account_id %>
-</p>
+    <strong>Amount:</strong>
+    <%= @opportunity.amount %>
+  <br>
+    <strong>Stage:</strong>
+    <%= @opportunity.stage %>
+  <br>
+    <strong>Account:</strong>
+    <%= @opportunity.account_id %>
+  </p>
+</div>

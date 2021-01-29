@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Available Opportunities</h1>
-
 <div>
   <div class="row">
     <% @opportunities.each do |opportunity| %>
       <div class="col-lg-4 col-sm-12">
           <div class="card linkable mt-3">
-            <div class="card-header">
+            <div id="card" class="card-header head text-truncate">
               <%= opportunity.name %> from <%= Account.find_by(id: opportunity.account_id).name %>
             </div>
               <div class="card-body">

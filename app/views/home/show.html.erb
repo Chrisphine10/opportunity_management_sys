@@ -1,56 +1,70 @@
 <p id="notice"><%= notice %></p>
-<% if session[:user_id] %>
-  <%= link_to 'Create Account', new_account_path, class: "btn btn-primary float-right" %>
-<% end %>
- 
-<h1>Company Accounts</h1>
-<div>
-  <div class="row">
-    <% @accounts.each do |account| %>
-      <div class="col-lg-4 col-sm-12">
-        <%= link_to account, class: "text-decoration-none", style: "color: black;" do %>
-          <div class="card linkable mt-3">
-            <div class="card-header">
-              <%= account.name %>
-            </div>
-              <div class="card-body">
-                  <h5 class="card-title">Address: <%= account.address %></h5>
-                  <p class="card-text">Available Opportunities: <%= account.opportunities.count %> </p>
-              </div>
-            <% if session[:user_id] && admin? %>
-              <div class="card-footer p-2">
-                <div class="row">
-                  <div class="col">
-                    <%= link_to 'Edit', edit_account_path(account), class: "btn btn-sm btn-primary form-control btn-block" %> 
+
+ <div class="row">
+   <div class="col-lg-4">
+     <div class="container card">
+      <% if session[:user_id] %>
+        <%= link_to 'Create Account', new_account_path, class: "btn btn-primary mt-2" %>
+      <% end %><br>
+      <h3>Company Accounts</h3>
+      <div>
+        <div class="row margin-twenty5-zero margin-b-zero pagination-row">
+<%= will_paginate @accounts , renderer: RemoteLinkPagination::LinkRenderer %>
+          <% @accounts.each do |account| %>
+            <div class="col-12">
+              <%= link_to account, class: "text-decoration-none", style: "color: black;" do %>
+                <div class="card linkable mt-3 pagination">
+                  <div class="card-header">
+                    <%= account.name %>
                   </div>
-                  <div class="col">
-                    <%= link_to 'Delete', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-primary form-control btn-block" %> 
-                  </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Address: <%= account.address %></h5>
+                        <p class="card-text">Available Opportunities: <%= account.opportunities.count %> </p>
+                    </div>
+                  <% if session[:user_id] && admin? %>
+                    <div class="card-footer p-2">
+                      <div class="row">
+                        <div class="col">
+                          <%= link_to 'Edit', edit_account_path(account), class: "btn btn-sm btn-primary form-control btn-block" %> 
+                        </div>
+                        <div class="col">
+                          <%= link_to 'Delete', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-primary form-control btn-block" %> 
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>
-<br>
-<h1>Available Opportunities</h1>
-<div>
-  <div class="row">
-    <% @opportunities.each do |opportunity| %>
-      <div class="col-lg-4 col-sm-12">
-          <div class="card linkable mt-3">
-            <div class="card-header">
-              <%= opportunity.name %> from <%= Account.find_by(id: opportunity.account_id).name %>
+              <% end %>
             </div>
-              <div class="card-body">
-                  <h5 class="card-title">Stage: <%= opportunity.stage %></h5>
-                  <p class="card-text">Amount: <%= opportunity.amount %> </p>
-              </div>
-          </div>
-      </div>
-    <% end %>
-  </div>
+          <% end %>
+        </div>
+        <div class=”col-lg-4 col-md-4 col-sm-5 col-xs-6 pagination-info”>
+        <span class=”pull-right”><%= page_entries_info(@accounts) %></span>
 </div>
+      </div>
+    </div>  
+  </div>
+  <br>
+  <div class="col-lg-8 p-lg-4 pt-sm-5">
+    <div class="container">
+      <h1>Available Opportunities</h1>
+      <div>
+        <div class="row">
+          <% @opportunities.each do |opportunity| %>
+            <div class="col-lg-6">
+               <div class="card linkable mt-3">
+                    <div class="head card-header text-truncate">
+                      <%= opportunity.name %> from <%= Account.find_by(id: opportunity.account_id).name %>
+                    </div>
+                      <div class="card-body">
+                          <h5 class="card-title">Stage: <%= opportunity.stage %></h5>
+                          <p class="card-text">Amount: <%= opportunity.amount %> </p>
+                      </div>
+                  </div> 
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>  
+  </div>
+ </div> 
