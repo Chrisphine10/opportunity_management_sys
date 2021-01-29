@@ -12,8 +12,15 @@
     <%= label_tag :password, 'Password:' %>
     <%= password_field_tag :password, params[:password], class: "form-control" %>
     </div>
-    <div class="actions">
-    <%= submit_tag "Login", class: "btn btn-primary mt-2" %>
+    <div class="actions mt-3">
+      <div class="row">
+        <div class="col">
+          <%= link_to 'Cancel', accounts_path, class: "btn btn-primary form-control btn-block" %> 
+        </div>
+        <div class="col">
+          <%= submit_tag "Login", class: "btn btn-primary form-control btn-block" %>
+        </div>
+      </div>
     </div>
   <% end %>
 </section>

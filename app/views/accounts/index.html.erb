@@ -1,35 +1,35 @@
 <p id="notice"><%= notice %></p>
 <% if session[:user_id] %>
-  <%= link_to 'New Account', new_account_path, class: "btn btn-primary float-right" %>
+  <%= link_to 'Create Account', new_account_path, class: "btn btn-primary float-right" %>
 <% end %>
 <h1>Accounts</h1>
 <div>
   <div class="row">
     <% @accounts.each do |account| %>
-      <div class="col-md-4 col-sm-12">
-        <div class="card mt-3">
-          <div class="card-header">
-            <%= account.name %>
-          </div>
-            <%= link_to account, class: "text-decoration-none", style: "color: black;" do %>
-              <div class="card-body linkable">
+      <div class="col-lg-4 col-sm-12">
+        <%= link_to account, class: "text-decoration-none", style: "color: black;" do %>
+          <div class="card linkable mt-3">
+            <div class="card-header">
+              <%= account.name %>
+            </div>
+              <div class="card-body">
                   <h5 class="card-title">Address: <%= account.address %></h5>
-                  <p class="card-text">Opportunities: <%= account.opportunities.count %> </p>
+                  <p class="card-text">Available Opportunities: <%= account.opportunities.count %> </p>
+              </div>
+            <% if session[:user_id] %>
+              <div class="card-footer p-2">
+                <div class="row">
+                  <div class="col">
+                    <%= link_to 'Edit', edit_account_path(account), class: "btn btn-sm btn-primary form-control btn-block" %> 
+                  </div>
+                  <div class="col">
+                    <%= link_to 'Delete', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-primary form-control btn-block" %> 
+                  </div>
+                </div>
               </div>
             <% end %>
-          <% if session[:user_id] %>
-            <div class="card-footer">
-              <div class="row">
-                <div class="col">
-                  <%= link_to 'Edit', edit_account_path(account), class: "btn btn-secondary form-control btn-block" %> 
-                </div>
-                <div class="col">
-                  <%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger form-control btn-block" %> 
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

@@ -40,7 +40,7 @@ class OpportunitiesController < ApplicationController
   def update
     respond_to do |format|
       if @opportunity.update(opportunity_params)
-        format.html { redirect_to account_opportunity_path(@account), notice: "Opportunity was successfully updated." }
+        format.html { redirect_to account_path(@account), notice: "Opportunity was successfully updated." }
         format.json { render :show, status: :ok, location: @opportunity }
       else
         format.html { render :edit, status: :unprocessable_entity }

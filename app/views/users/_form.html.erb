@@ -16,6 +16,8 @@
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
+  <%= form.text_field :role, value: "User", hidden: true %>
+
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password, class: "form-control" %>
@@ -26,7 +28,19 @@
     <%= form.password_field :password_confirmation, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= submit_tag "Submit", class: "btn btn-primary mt-2" %>
-  </div>
+   <div class="actions mt-3">
+      <div class="row">
+        <div class="col">
+          <%= link_to 'Cancel', users_path, class: "btn btn-primary form-control btn-block" %> 
+        </div>
+        <div class="col">
+          <%= submit_tag "Submit", class: "btn btn-primary form-control btn-block" %>
+        </div>
+        <% if user.id? %>
+        <div class="col">
+          <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary form-control btn-block" %> 
+        </div>
+        <% end %>
+      </div>
+    </div>
 <% end %>

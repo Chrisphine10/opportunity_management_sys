@@ -1,9 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h4 class="text-center">
   <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <%= @user.name %><br>
+  <strong>Role:</strong>
+  <%= @user.role %>
+</h4>
+<h1>Accounts</h1>
+<div>
+<% if @accounts %>
+  <div class="row">
+    <% @accounts.each do |account| %>
+      <div class="col-lg-4 col-sm-12">
+        <%= link_to account, class: "text-decoration-none", style: "color: black;" do %>
+          <div class="card linkable mt-3">
+            <div class="card-header">
+              <%= account.name %>
+            </div>
+              <div class="card-body">
+                  <h5 class="card-title">Address: <%= account.address %></h5>
+                  <p class="card-text">Available Opportunities: <%= account.opportunities.count %> </p>
+              </div>
+            <% if session[:user_id] %>
+              <div class="card-footer p-2">
+                <div class="row">
+                  <div class="col">
+                    <%= link_to 'Edit', edit_account_path(account), class: "btn btn-sm btn-primary form-control btn-block" %> 
+                  </div>
+                  <div class="col">
+                    <%= link_to 'Delete', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-primary form-control btn-block" %> 
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

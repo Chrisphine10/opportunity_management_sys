@@ -8,38 +8,40 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Home</a>
+          <a class="btn btn-primary" href="/">Home</a>
           <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"  aria-controls="navbar-collapse-1" aria-label="Toggle navigation" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item"><%= link_to 'Accounts', accounts_path, :class => "btn"  %></li>
+          <ul class="navbar-nav active">
+            <li class="nav-item"><%= link_to 'Accounts', accounts_path, class: "btn btn-primary"  %></li>
             <% if session[:user_id] %>
-              <li class="nav-item"><%= link_to 'Users', users_path, class: 'nav-list btn' %></li>
-              <li class="nav-item"><%= button_to 'Logout', logout_path, method: :delete, :class => "btn"  %></li>
+              <% if User.find_by(id: session[:user_id]).role == "Admin" %>
+                <li class="nav-item"><%= link_to 'Users', users_path, class: 'nav-list btn btn-primary' %></li>
+              <% end %>
+                <li class="nav-item"><%= button_to 'Logout', logout_path, method: :delete, class: "btn btn-primary"  %></li>
             <% else %>
-              <li class="nav-item"><%= button_to 'Login', users_path, :class => "btn" %></li>
+              <li class="nav-item"><%= button_to 'Login', users_path, class: "btn btn-primary" %></li>
             <% end %>
           </ul>
         </div>
       </div>
     </nav>
     
-  <main class='<%= controller.controller_name %>'>
-    <div class="container">
-      <div class="card mt-3">
-        <div class="card-body">
-          <%= yield %>
+    <main class='<%= controller.controller_name %>'>
+      <div class="container">
+        <div class="card mt-3">
+          <div class="card-body">
+            <%= yield %>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
   </body>
 </html>

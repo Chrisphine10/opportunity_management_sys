@@ -15,7 +15,7 @@
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
-
+   <%= form.number_field :user_id, value: session[:user_id], hidden: true %>
   <div class="field">
     <%= form.label :address %>
     <%= form.text_field :address, class: "form-control" %>
@@ -24,14 +24,14 @@
   <div class="actions mt-2">
     <div class="row">
       <div class="col">
-        <%= link_to 'Cancel', accounts_path, class: "btn btn-secondary form-control btn-block" %> 
+        <%= link_to 'Cancel', accounts_path, class: "btn btn-primary form-control btn-block" %> 
       </div>
       <div class="col">
         <%= submit_tag "Submit", class: "btn btn-primary form-control btn-block" %>
       </div>
       <% if @account.id? %>
       <div class="col">
-         <%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger form-control btn-block" %>
+         <%= link_to 'Delete', account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary form-control btn-block" %>
       </div>
       <% end %>
     </div>

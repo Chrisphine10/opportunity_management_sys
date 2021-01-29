@@ -15,5 +15,71 @@
  */
     
     .linkable:hover {
-        background-color: #0575d6;
+        margin-top: 20px;
+        transition: ease-out;
+        transform: scale(1.08)!important;
+    }
+    /**
+* Template Name: OnePage - v2.2.2
+* Template URL: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+    /*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+    
+    body {
+        font-family: "Open Sans", sans-serif;
+        color: #444444;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Raleway", sans-serif;
+    }
+    
+    .card {
+        box-shadow: 0 0 29px 0 rgba(18, 66, 101, 0.3)!important;
+        border: none!important;
+        transition: all 0.3s ease-in-out!important;
+        border-radius: 8px!important;
+        z-index: 1!important;
+    }
+    /*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+    
+    body {
+        position: relative!important;
+        background: url("hero-bg.jpg") top center!important;
+        background-size: cover!important;
+    }
+    
+    .card-header {
+        background-color: rgb(52, 155, 214)!important;
+        border-top-left-radius: 8px!important;
+        border-top-right-radius: 8px!important;
+        color: white;
+    }
+    
+    .card {
+        border-bottom: 1px inset rgb(52, 155, 214)!important;
+        border-left: 1px inset rgb(52, 155, 214)!important;
+        border-right: 1px inset rgb(52, 155, 214)!important;
+        border-bottom-left-radius: 8px!important;
+        border-bottom-right-radius: 8px!important;
+    }
+    
+    .card .card-footer {
+        border-top: none;
+        background-color: inherit;
+    }
+    
+    .start {
+        width: 200px;
     }

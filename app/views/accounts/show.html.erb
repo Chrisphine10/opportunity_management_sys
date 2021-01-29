@@ -1,41 +1,52 @@
 <p id="notice"><%= notice %></p>
-<% if session[:user_id] %>
-<%= link_to 'Edit', edit_account_path(@account), class: "btn btn-secondary float-right" %> 
-<% end %>
-<p>
-  <strong>Name:</strong>
-  <%= @account.name %>
-</p>
 
-<p>
+<% if session[:user_id] %>
+  <%= link_to 'Edit ' + @account.name, edit_account_path(@account), class: "btn btn-primary" %> 
+  <%= link_to 'Create Opportunity', new_account_opportunity_path(@account), class: "btn btn-small btn-outline-primary" %>
+<% end %>
+<h2 class="text-center">
+  <%= @account.name %>
+</h2>
+
+<p class="text-center">
   <strong>Address:</strong>
   <%= @account.address %>
 </p>
-
-<h2>Opportunities</h2>
-<% if session[:user_id] %>
-  <%= link_to 'New Opportunity', new_account_opportunity_path(@account) %>
-<% end %>
-
-<div class="row">
-  <% for opportunity in @account.opportunities %>
-    <div class="col-sm-4">
-      <div class="card mt-3">
-          <div class="card-header">
-            <%= opportunity.name %>
-          </div>
-          
-          <div class="card-body">
-            <h5 class="card-title"><%= opportunity.amount %></h5>
-            <p class="card-text"><%= opportunity.stage %></p>
-          </div>
-          <% if session[:user_id] %>
-            <div class="card-footer text-center">
-              <%= link_to 'Edit', edit_account_opportunity_path(@account, opportunity), class: "btn btn-warning float-left" %>
-              <%= link_to 'Destroy', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right" %>
-            </div>
-          <% end %>
-      </div>
-    </div>
-  <% end %>
+<hr>
+<% if !@account.opportunities.empty? %>
+<div class="header"> 
+  <h2>Available Opportunities</h2>
 </div>
+  <div class="card-body">
+    <div class="row">
+      <% for opportunity in @account.opportunities %>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card linkable mt-3">
+              <div class="card-header">
+                <%= opportunity.name %>
+              </div>
+              
+              <div class="card-body">
+                <h5 class="card-title"><%= opportunity.stage %></h5>
+                <p class="card-text">Ksh <%= opportunity.amount %></p>
+              </div>
+              <% if session[:user_id] %>
+                <div class="card-footer p-2">
+                  <div class="row">
+                    <div class="col">
+                      <%= link_to 'Edit', edit_account_opportunity_path(@account, opportunity), class: "btn btn-sm btn-primary form-control btn-block" %>
+                    </div>
+                    <div class="col">
+                      <%= link_to 'Delete', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-primary form-control btn-block"%>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+<h4 class="m-5 text-center">No Opportunities available! <% if !session[:user_id] %>Come back later. <% end %> </h4>
+<% end %>

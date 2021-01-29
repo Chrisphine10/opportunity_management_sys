@@ -23,21 +23,23 @@
 
   <div class="field">
     <%= form.label :stage %>
-    <%= form.select :stage, Opportunity.stages.keys, id: :Opportunity_stage,
-    prompt: '--Select a stage--', class: "form-control" %>
+      <%= form.select :stage, Opportunity.stages.keys,
+      id: :Opportunity_stage,
+      prompt: '--Select a stage--',
+      class: "form-control" %>
   </div>
 
   <div class="actions">
      <div class="row">
       <div class="col">
-        <%= link_to 'Cancel', @account, class: "btn btn-secondary form-control btn-block" %> 
+        <%= link_to 'Cancel', @account, class: "btn btn-primary form-control btn-block" %> 
       </div>
       <div class="col">
         <%= submit_tag "Submit", class: "btn btn-primary form-control btn-block" %>
       </div>
-      <% if @account.id? %>
+      <% if opportunity.id? %>
       <div class="col">
-         <%= link_to 'Destroy', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger form-control btn-block" %>
+         <%= link_to 'Delete', [@account, opportunity], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary form-control btn-block" %>
       </div>
       <% end %>
     </div>

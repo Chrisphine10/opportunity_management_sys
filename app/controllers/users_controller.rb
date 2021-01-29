@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
- 
+  before_action :only_admin, only: %i[ new create edit update destroy]
   before_action :set_user, only: %i[ show edit update destroy ]
-
+  
   # GET /users or /users.json
   def index
     @users = User.all
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @accounts = Account.all
   end
 
   # GET /users/new
@@ -50,10 +51,14 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+    if @user.role == "Admin" || @user.id == session[:user_id]
+      redirect_to users_url, notice: "Can't delete user"
+    else
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
   rescue_from 'User::Error' do |exception|
@@ -69,6 +74,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation)
+      params.require(:user).permit(:name, :password, :password_confirmation, :role)
     end
 end
