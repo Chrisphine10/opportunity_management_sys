@@ -9,7 +9,6 @@
       <h3>Company Accounts</h3>
       <div>
         <div class="row margin-twenty5-zero margin-b-zero pagination-row">
-<%= will_paginate @accounts , renderer: RemoteLinkPagination::LinkRenderer %>
           <% @accounts.each do |account| %>
             <div class="col-12">
               <%= link_to account, class: "text-decoration-none", style: "color: black;" do %>
@@ -37,10 +36,18 @@
               <% end %>
             </div>
           <% end %>
+          <div class="pager table pt-4">
+            <ul id="horizontal-list">
+                <li class="previous <%= @page == 0 ? 'disabled' : '' %> btn btn-outline-primary float-left">
+                    <%= link_to_if @page > 0, "Previous", home_path(page: @page - 1) %>
+                </li>
+
+                <li class="next btn float-right mr-3">
+                    <%= link_to "Next", home_path(page: @page + 1) %>
+                </li>
+            </ul>
+          </div>
         </div>
-        <div class=”col-lg-4 col-md-4 col-sm-5 col-xs-6 pagination-info”>
-        <span class=”pull-right”><%= page_entries_info(@accounts) %></span>
-</div>
       </div>
     </div>  
   </div>
@@ -63,6 +70,17 @@
                   </div> 
             </div>
           <% end %>
+          <div class="pager table pt-4">
+            <ul id="horizontal-list">
+                <li class="previous <%= @sage == 0 ? 'disabled' : '' %> btn btn-outline-primary float-left">
+                    <%= link_to_if @sage > 0, "Previous", home_path(sage: @sage - 1) %>
+                </li>
+
+                <li class="next btn float-right mr-3">
+                    <%= link_to "Next", home_path(sage: @sage + 1) %>
+                </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>  

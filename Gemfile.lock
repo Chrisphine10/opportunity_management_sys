@@ -83,6 +83,18 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.7)
       concurrent-ruby (~> 1.0)
+    kaminari (1.2.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.1)
+      kaminari-activerecord (= 1.2.1)
+      kaminari-core (= 1.2.1)
+    kaminari-actionview (1.2.1)
+      actionview
+      kaminari-core (= 1.2.1)
+    kaminari-activerecord (1.2.1)
+      activerecord
+      kaminari-core (= 1.2.1)
+    kaminari-core (1.2.1)
     loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -183,9 +195,6 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (3.1.8)
-    will_paginate-bootstrap (1.0.2)
-      will_paginate (>= 3.0.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
@@ -199,6 +208,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   faker
+  kaminari
   mysql2
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.3)
@@ -209,8 +219,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  will_paginate (~> 3.1.1)
-  will_paginate-bootstrap
 
 RUBY VERSION
    ruby 2.6.6p146
