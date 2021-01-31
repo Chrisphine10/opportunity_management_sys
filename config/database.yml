@@ -26,4 +26,4 @@ test:
   database: om_test
 
 production:
-  database: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['CLEARDB_DATABASE_URL'] %>
