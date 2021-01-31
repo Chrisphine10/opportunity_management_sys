@@ -26,5 +26,4 @@ test:
   database: om_test
 
 production:
-  <<: *default
-  database: om_production
+  database: <%= ENV['CLEARDB_DATABASE_URL'] %>
