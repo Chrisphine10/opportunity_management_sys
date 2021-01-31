@@ -29,3 +29,4 @@ production:
   adapter: mysql2
   encoding: utf8
   database: <%= ENV['DATABASE_URL'] %>
+  socket: /tmp/mysql.sock
