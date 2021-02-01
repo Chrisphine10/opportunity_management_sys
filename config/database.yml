@@ -32,4 +32,3 @@ production:
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
   database: <%= ENV['DATABASE_URL'] %>
-  socket: /tmp/mysql.sock
