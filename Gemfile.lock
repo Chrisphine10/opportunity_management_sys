@@ -83,18 +83,6 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.7)
       concurrent-ruby (~> 1.0)
-    kaminari (1.2.1)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.1)
-      kaminari-activerecord (= 1.2.1)
-      kaminari-core (= 1.2.1)
-    kaminari-actionview (1.2.1)
-      actionview
-      kaminari-core (= 1.2.1)
-    kaminari-activerecord (1.2.1)
-      activerecord
-      kaminari-core (= 1.2.1)
-    kaminari-core (1.2.1)
     loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -208,8 +196,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   faker
-  kaminari
-  mysql2
+  mysql2 (~> 0.5.2)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.3)
   sass-rails (>= 6)
