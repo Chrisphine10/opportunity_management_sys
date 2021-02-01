@@ -28,6 +28,6 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  host: localhost
-  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
+  socket: /tmp/mysql.sock
