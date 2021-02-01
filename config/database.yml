@@ -29,5 +29,4 @@ production:
   adapter: mysql2
   encoding: utf8
   host: localhost
-  database: <%= ENV['DATABASE_URL'] %>
-  socket: var/lib/mysql/mysqld/mysqld.sock
+  database: <%= ENV['CLEARDB_DATABASE_URL'] %>
