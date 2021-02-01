@@ -30,3 +30,4 @@ production:
   encoding: utf8
   host: localhost
   database: <%= ENV['DATABASE_URL'] %>
+  socket: var/lib/mysql/mysqld/mysqld.sock
