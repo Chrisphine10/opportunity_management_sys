@@ -29,6 +29,4 @@ production:
   adapter: mysql2
   encoding: utf8
   host: localhost
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
   database: <%= ENV['DATABASE_URL'] %>
