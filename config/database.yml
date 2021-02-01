@@ -6,13 +6,6 @@
 #
 default: &default
   adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  host: localhost
-  username: root
-  password: 12345678
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
 
 development:
   <<: *default
@@ -26,7 +19,7 @@ test:
   database: om_test
 
 production:
-  adapter: mysql2
+  <<: *default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   url: <%= ENV['CLEARDB_DATABASE_URL'] %>
