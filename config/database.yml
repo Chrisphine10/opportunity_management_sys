@@ -20,7 +20,6 @@ test:
 
 production:
   <<: *default
-  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   url: <%= ENV['CLEARDB_DATABASE_URL'] %>
   socket: /tmp/mysql.sock
