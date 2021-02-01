@@ -26,7 +26,7 @@ test:
   database: om_test
 
 production:
-  adapter: mysql2
+  adapter: mysql
   encoding: utf8
   host: localhost
   url: <%= ENV['CLEARDB_DATABASE_URL'] %>
