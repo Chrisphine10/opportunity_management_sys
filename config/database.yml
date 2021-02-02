@@ -24,3 +24,4 @@ production:
   url: <%= ENV['DATABASE_URL'] %>
   reconnect: false
   socket: /tmp/mysql.sock
+  ssl_mode: disabled
