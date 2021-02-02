@@ -22,6 +22,7 @@ production:
   <<: *default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   url: <%= ENV['DATABASE_URL'] %>
-  reconnect: false
+  encoding: utf8
+  reconnect: true
   socket: /tmp/mysql.sock
   ssl_mode: disabled
