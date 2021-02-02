@@ -9,6 +9,11 @@ default: &default
 
 development:
   <<: *default
+  encoding: utf8
+  reconnect: true
+  host: localhost
+  username: root
+  password: 12345678
   database: om_development
 
 # Warning: The database defined as "test" will be erased and
@@ -16,6 +21,11 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  encoding: utf8
+  reconnect: true
+  host: localhost
+  username: root
+  password: 12345678
   database: om_test
 
 production:
