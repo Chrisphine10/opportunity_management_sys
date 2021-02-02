@@ -3,9 +3,13 @@
   <%= link_to 'Get Started', home_url, :class => "btn start btn-lg btn-outline-primary m-3"  %>
   <div class="card m-5">
     <h4 class="mt-3">Demo Account</h4>
-    <p><strong>Admin</strong></p>
-    <p>username: omsystem</p>
-    <p>password: 12345678</p>
+    <% if !@users.empty? %>
+      <% @users.each do |user| %>
+      <p><strong>Admin</strong></p>
+      <p>username: <%= user.name %></p>
+      <p>password: 12345678 </p>
+      <% end %>
+    <% end %>
     <p class="text-danger">Note: only Admin can create user accounts</p>
   </div>
   <div>

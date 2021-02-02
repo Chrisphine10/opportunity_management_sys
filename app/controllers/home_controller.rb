@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   ACCOUNTS_SIZE = 4
   OPPS_SIZE = 10
   def index
+    @users = User.where(role: "Admin")
   end
   def show
     @page = (params[:page] || 0).to_i
