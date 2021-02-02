@@ -85,7 +85,10 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-
+  config.cache_classes = true
+  config.serve_static_files = true
+  config.assets.compile = true
+  config.assets.digest = true
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
